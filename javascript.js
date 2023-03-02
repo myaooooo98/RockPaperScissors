@@ -1,5 +1,16 @@
-let message = "";
 const buttons = document.querySelectorAll('button');
+
+// div that display the result of each game
+let message = "";
+let container = document.querySelector('.container');
+
+// div that record the scores of the game
+let playerScores = document.querySelector('.score .playerScore');
+let computerScores = document.querySelector('.score .computerScore');
+let playerScore = 0;
+let computerScore = 0;
+playerScores.textContent = playerScore;
+computerScores.textContent = computerScore;
 
 // get computer choice
 function getComputerChoice(){
@@ -8,6 +19,7 @@ function getComputerChoice(){
     return option[choice];
 }
 
+// play Rock Paper Scissors
 function playRound(playerSelection, computerSelection){
     // compare the user's choice with computer choice
     if (playerSelection === "rock"){
@@ -46,12 +58,12 @@ function playRound(playerSelection, computerSelection){
     return message;
 }
 
+// initial the game and record the score
 function game(e){
     // record the score
-    let playerScore = 0;
-    let computerScore = 0;
     let playerSelection = this.value;
     let message = playRound(playerSelection,getComputerChoice());
+
     if (message.includes("Win")){
         playerScore++;
     }
@@ -59,7 +71,10 @@ function game(e){
         computerScore++;
     }
 
-    console.log(message)
+    // show the message in container div
+    let result = document.createElement('p');
+    result.textContent = message;
+    container.appendChild(result);
 
     // if (playerScore > computerScore){
     //     return console.log("You're the winner!");
