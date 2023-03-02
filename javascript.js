@@ -1,4 +1,5 @@
 let message = "";
+const buttons = document.querySelectorAll('button');
 
 // get computer choice
 function getComputerChoice(){
@@ -8,9 +9,6 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
-    // make playerSelection to be case-insensitive
-    playerSelection = playerSelection.toLowerCase();
-
     // compare the user's choice with computer choice
     if (playerSelection === "rock"){
         if (computerSelection === "rock"){
@@ -48,33 +46,30 @@ function playRound(playerSelection, computerSelection){
     return message;
 }
 
-function game(){
+function game(e){
     // record the score
     let playerScore = 0;
     let computerScore = 0;
-    // play a 5 round game
-    for (let i = 0; i < 5; i++){
-        // prompt user for input
-        let playerSelection = prompt("Rock, Paper or Scissors?");
-        let message = playRound(playerSelection,getComputerChoice());
-        if (message.includes("Win")){
-            playerScore++;
-        }
-        else if (message.includes("Lose")){
-            computerScore++;
-        }
-        console.log(message);
+    let playerSelection = this.value;
+    let message = playRound(playerSelection,getComputerChoice());
+    if (message.includes("Win")){
+        playerScore++;
+    }
+    else if (message.includes("Lose")){
+        computerScore++;
     }
 
-    if (playerScore > computerScore){
-        return console.log("You're the winner!");
-    }
-    else if (playerScore < computerScore){
-        return console.log("You're the loser!");
-    }
-    else {
-        return console.log("It's a tie!");
-    }
+    console.log(message)
+
+    // if (playerScore > computerScore){
+    //     return console.log("You're the winner!");
+    // }
+    // else if (playerScore < computerScore){
+    //     return console.log("You're the loser!");
+    // }
+    // else {
+    //     return console.log("It's a tie!");
+    // }
 }
 
-game();
+buttons.forEach(button => button.addEventListener('click', game));
