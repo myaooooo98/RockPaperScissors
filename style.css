@@ -1,0 +1,12 @@
+img {
+    transform: rotate(35deg);
+}
+
+button.option {
+    background-color: transparent;
+    border: none;
+}
+
+button.option:hover {
+    background-color: lightgrey;
+}

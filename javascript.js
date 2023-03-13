@@ -1,5 +1,6 @@
 let option = ['rock', 'paper', 'scissors'];
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.option');
+const resetBtn = document.querySelector('#reset');
 
 // div that display the result of each game
 let message = "";
@@ -59,21 +60,31 @@ function game(e) {
 
     scoreTracker(playerScore, computerScore);
 
+    if (isWinner(playerScore)){
+        message = "You are the Winner!";
+    }
+    else if (isWinner(computerScore)){
+        message = "Game Over! You Lose!";
+    }
+
     // show the message in container div
     let result = document.createElement('p');
     result.textContent = message;
     container.appendChild(result);
-
-    if (isWinner(playerScore)){
-        console.log("You are the Winner!")
-    }
-    else if (isWinner(computerScore)){
-        console.log("You are the Loser!")
-    }
 }
 
 buttons.forEach(button => button.addEventListener('click', game));
 
 function isWinner(score) {
+    resetBtn.style.visibility = "visible";
     return score >= 5 ? true : false;
 }
+
+resetBtn.addEventListener('click', function() {
+    playerScore = 0;
+    computerScore = 0;
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    scoreTracker(playerScore, computerScore);
+})
