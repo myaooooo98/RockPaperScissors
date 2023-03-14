@@ -1,3 +1,33 @@
+// to trigger play button
+const start = document.querySelector("#start");
+const content = document.querySelector(".content");
+
+start.addEventListener("click", function(e){
+    content.classList.toggle("show");
+    start.style.display = "none";
+})
+
+
+// for resources modal
+const modal = document.querySelector(".modal");
+const triggerBtn = document.querySelector(".trigger");
+const closeBtn = document.querySelector("#close");
+
+function toggleModal() {
+    modal.classList.toggle("show");
+}
+
+function windowOnClick(event) {
+    if (event.target === modal) {
+        toggleModal();
+    }
+}
+
+triggerBtn.addEventListener("click", toggleModal);
+closeBtn.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+// for playing games
 let option = ['rock', 'paper', 'scissors'];
 const buttons = document.querySelectorAll('.option');
 const resetBtn = document.querySelector('#reset');
@@ -81,10 +111,15 @@ function isWinner(score) {
 }
 
 resetBtn.addEventListener('click', function() {
+    // reset the score
     playerScore = 0;
     computerScore = 0;
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
     scoreTracker(playerScore, computerScore);
+
+    // reset to the first screen
+    content.classList.remove("show");
+    start.style.display = "block";
 })
