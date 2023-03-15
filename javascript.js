@@ -14,7 +14,7 @@ const triggerBtn = document.querySelector(".trigger");
 const closeBtn = document.querySelector("#close");
 
 function toggleModal() {
-    modal.classList.toggle("show");
+    modal.classList.toggle("showModal");
 }
 
 function windowOnClick(event) {
@@ -30,11 +30,11 @@ window.addEventListener("click", windowOnClick);
 // for playing games
 let option = ['rock', 'paper', 'scissors'];
 const buttons = document.querySelectorAll('.option');
-const resetBtn = document.querySelector('#reset');
+const resetBtn = document.querySelector('button.reset');
 
 // div that display the result of each game
 let message = "";
-let container = document.querySelector('.container');
+let result = document.querySelector('.result');
 
 // div that record the scores of the game
 let playerScore = 0;
@@ -98,9 +98,9 @@ function game(e) {
     }
 
     // show the message in container div
-    let result = document.createElement('p');
-    result.textContent = message;
-    container.appendChild(result);
+    let messages = document.createElement('p');
+    messages.textContent = message;
+    result.appendChild(messages);
 }
 
 buttons.forEach(button => button.addEventListener('click', game));
@@ -114,8 +114,8 @@ resetBtn.addEventListener('click', function() {
     // reset the score
     playerScore = 0;
     computerScore = 0;
-    while (container.firstChild) {
-        container.removeChild(container.firstChild);
+    while (result.firstChild) {
+        result.removeChild(result.firstChild);
     }
     scoreTracker(playerScore, computerScore);
 

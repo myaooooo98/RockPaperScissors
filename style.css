@@ -1,3 +1,33 @@
+/* https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website */
+@font-face {
+    font-family: 'good_pawoodisplay';
+    src: url('./Font/goodpawoodisplay-qzd96-webfont.woff2') format('woff2'),
+         url('./Font/goodpawoodisplay-qzd96-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Color Theme Swatches in Hex
+.macaroon-1-hex { color: #FFF3DB; }
+.macaroon-2-hex { color: #DBCDBD; }
+.macaroon-3-hex { color: #F2E5DC; }
+.macaroon-4-hex { color: #DBC4BD; }
+.macaroon-5-hex { color: #FCD9D7; } */
+
+/* Color Theme Swatches in RGBA
+.macaroon-1-rgba { color: rgba(255, 242, 219, 1); }
+.macaroon-2-rgba { color: rgba(219, 205, 188, 1); }
+.macaroon-3-rgba { color: rgba(242, 228, 219, 1); }
+.macaroon-4-rgba { color: rgba(219, 195, 188, 1); }
+.macaroon-5-rgba { color: rgba(251, 216, 214, 1); } */
+
+/* Color Theme Swatches in HSLA
+.macaroon-1-hsla { color: hsla(0, 100, 92, 1); }
+.macaroon-2-hsla { color: hsla(0, 29, 80, 1); }
+.macaroon-3-hsla { color: hsla(0, 45, 90, 1); }
+.macaroon-4-hsla { color: hsla(0, 29, 80, 1); }
+.macaroon-5-hsla { color: hsla(0, 86, 91, 1); } */
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +44,20 @@ body {
     align-items: center;
 }
 
+/* -------------header------------- */
+div.header {
+    margin-top: 10vh;
+}
+
+.header h1 {
+    font-family: 'good_pawoodisplay';
+    font-size: 100px;
+    color: rgba(219, 195, 188, 1);
+}
+
+
 /* -------------content------------- */
+/* -------------before starting to play------------- */
 #start {
     border-radius: 50%;
     padding: 50px 50px;
@@ -27,29 +70,48 @@ body {
 }
 
 .content {
-    visibility: hidden;
+    display: none;
     opacity: 0;
 }
 
 .show {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: scale(1.0) !important;
-    transition: visibility 0s linear 0s, opacity 0.25s, transform 0.25s;
+    display: flex;
+    opacity: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* -------------content------------- */
-img {
-    transform: rotate(35deg);
+
+/* -------------while playing------------- */
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options img {
+    width: 250px;
+    height: 250px;
+    margin: 5px;
+    object-fit: scale-down;
 }
 
 button.option {
     background-color: transparent;
-    border: none;
+    border: 1px lightgrey solid;
+    border-radius: 50%;
 }
 
 button.option:hover {
     background-color: lightgrey;
+    cursor: pointer;
+    filter: opacity(50%);
+}
+
+button .reset {
+    visibility: hidden !important;
 }
 
 /* -------------footer------------- */
@@ -105,3 +167,9 @@ div.resources {
     font-weight: bold;
 }
 
+.showModal {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1.0) !important;
+    transition: visibility 0s linear 0s, opacity 0.25s, transform 0.25s;
+}

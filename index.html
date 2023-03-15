@@ -16,15 +16,27 @@
         <button id="start">Play</button>
     </div>
     <div class="content">
-        <button class="option" value="rock"><img src="images/rock.png" alt="Rock"></button>
-        <button class="option" value="paper"><img src="images/paper.png" alt="Paper"></button>
-        <button class="option" value="scissors"><img src="images/scissors.png" alt="Scissors"></button>
-        <div class="container"></div>
-        <div class="score">
-            <p>Player: <span class="playerScore"></span></p>
-            <p>Computer: <span class="computerScore"></span></p>
+        <div class="container playing">
+            <div class="player">
+                <div class="score">
+                    <p>Player: <span class="playerScore"></span></p>
+                </div>
+            </div>
+            <div class="computer">
+                <div class="score">
+                    <p>Computer: <span class="computerScore"></span></p>
+                </div>
+            </div>
         </div>
-        <button id="reset" style="visibility: hidden;">Reset</button>
+        <div class="container options">
+            <button class="option" value="rock"><img src="images/rock.png" alt="Rock"></button>
+            <button class="option" value="paper"><img src="images/paper.png" alt="Paper"></button>
+            <button class="option" value="scissors"><img src="images/scissors.png" alt="Scissors"></button>
+            <div class="result"></div>
+        </div>
+        <div class="container reset">
+            <button class="reset">Reset</button>
+        </div>
     </div>
     <div class="footer">
         <p>Copyright &copy; Lee Min Yao</p>
@@ -33,6 +45,7 @@
             <div class="resources">
                 <span id="close">&times;</span>
                 <p>Images from <a href="https://www.vecteezy.com/vector-art/693121-paw-sign-of-rock-paper-scissors-game">Paw Sign Of Rock Paper Scissors Game Vectors by Vecteezy</a></p>
+                <p>Font from <a href="https://www.fontspace.com/good-pawoo-display-font-f89797">Good Pawoo Display Font by Attype Studio</a></p>
             </div>
         </div>
     </div>
