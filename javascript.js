@@ -1,10 +1,11 @@
 // to trigger play button
 const start = document.querySelector("#start");
 const content = document.querySelector(".content");
+const divPlay = document.querySelector('div.play');
 
 start.addEventListener("click", function(e){
     content.classList.toggle("show");
-    start.style.display = "none";
+    divPlay.style.display = "none";
 })
 
 
@@ -121,5 +122,5 @@ resetBtn.addEventListener('click', function() {
 
     // reset to the first screen
     content.classList.remove("show");
-    start.style.display = "block";
+    divPlay.style.display = "flex";
 })

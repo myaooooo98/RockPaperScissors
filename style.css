@@ -40,7 +40,7 @@
 body {
     max-width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,11 +60,18 @@ div.header {
 
 /* -------------content------------- */
 /* -------------before starting to play------------- */
+div.play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 #start {
     color: rgb(145, 128, 123);
     border-radius: 50%;
     border: none;
-    padding: 50px 50px;
+    padding: 50px;
     box-shadow: 0 0 10px rgba(251, 216, 214, 0.5);
     transform: scale(1);
     width: 300px;
@@ -77,8 +84,9 @@ div.header {
 }
 
 #start:hover {
-    transform: scale(1.2);
-    background-color: rgba(255, 242, 219, 1);
+    transform: scale(1.15);
+    background-color: transparent;
+    border: 2px solid rgba(251, 216, 214, 1);
 }
 
 .content {
@@ -99,8 +107,29 @@ div.header {
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.container .playing {
+    flex-grow: 1;
+}
+
+div.players {
+    width: 50%;
+    height: 40vh;
+}
+
+div.score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: "Poppins", sans-serif;
 }
 
 .options img {
@@ -122,8 +151,16 @@ button.option:hover {
     filter: opacity(50%);
 }
 
-button .reset {
-    visibility: hidden !important;
+div.reset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+button.reset {
+    visibility: hidden;
+    font-size: 1.5em;
 }
 
 /* -------------footer------------- */
@@ -200,14 +237,14 @@ div.resources {
     color: #DBC4BD;
 }
 
-#openModal {
-    padding: 8px 20px;
+#openModal, button.reset {
+    padding: 10px 50px;
     border-radius: 20px;
     border: none;
     background-color: rgb(218, 205, 198);
 }
 
-#openModal:hover {
+#openModal:hover, button.reset:hover {
     border: 2px solid;
     font-weight: bold;
     background-color: transparent;
