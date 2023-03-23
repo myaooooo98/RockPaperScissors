@@ -10,11 +10,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* Color Theme Swatches in Hex
-.macaroon-1-hex { color: #FFF3DB; }
-.macaroon-2-hex { color: #DBCDBD; }
-.macaroon-3-hex { color: #F2E5DC; }
-.macaroon-4-hex { color: #DBC4BD; }
-.macaroon-5-hex { color: #FCD9D7; } */
+.macaroon-1-hex { color: #FFF3DB; } yellow
+.macaroon-2-hex { color: #DBCDBD; } browm
+.macaroon-3-hex { color: #F2E5DC; } beige
+.macaroon-4-hex { color: #DBC4BD; } rose
+.macaroon-5-hex { color: #FCD9D7; } pink*/
 
 /* Color Theme Swatches in RGBA
 .macaroon-1-rgba { color: rgba(255, 242, 219, 1); }
@@ -49,7 +49,7 @@ body {
 
 /* -------------header------------- */
 div.header {
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .header h1 {
@@ -107,7 +107,7 @@ div.play {
 .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -115,12 +115,12 @@ div.play {
 }
 
 .container .playing {
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 div.players {
     width: 50%;
-    height: 40vh;
+    height: 65vh;
 }
 
 div.score {
@@ -128,8 +128,33 @@ div.score {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    font-family: "Poppins", sans-serif;
+    font-size: 3em;
+    font-family: 'good_pawoodisplay';
+    color: rgb(231, 167, 163);
+}
+
+p.playerScore, p.computerScore {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+div.decision {
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+}
+
+.decision img {
+    width: 200px;
+}
+
+.player > .decision img {
+    transform: rotate(45deg);
+}
+
+.computer > .decision img {
+    transform: rotate(-45deg);
 }
 
 .options img {
@@ -160,7 +185,7 @@ div.reset {
 
 button.reset {
     visibility: hidden;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 /* -------------footer------------- */

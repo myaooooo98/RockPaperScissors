@@ -28,15 +28,6 @@ triggerBtn.addEventListener("click", toggleModal);
 closeBtn.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
-// for playing games
-let option = ['rock', 'paper', 'scissors'];
-const buttons = document.querySelectorAll('.option');
-const resetBtn = document.querySelector('button.reset');
-
-// div that display the result of each game
-let message = "";
-let result = document.querySelector('.result');
-
 // div that record the scores of the game
 let playerScore = 0;
 let computerScore = 0;
@@ -50,27 +41,40 @@ function scoreTracker(playerScore, computerScore) {
 
 scoreTracker(playerScore, computerScore);
 
+// for playing games
+let option = ['rock', 'paper', 'scissors'];
+const buttons = document.querySelectorAll('.option');
+const resetBtn = document.querySelector('button.reset');
+const decisionPlayer = document.querySelector('.player > .decision');
+const decisionCom = document.querySelector('.computer > .decision');
+
+// div that display the result of each game
+let message = "";
+
 // get computer choice
 function getComputerChoice(){
+    while (decisionCom.firstChild) {
+        decisionCom.removeChild(decisionCom.firstChild);
+    }
     let choice = Math.floor(Math.random() * 3);
-
+    let img = document.createElement('img');
+    img.src = `images/${option[choice]}.png`;
+    img.alt = `${option[choice]}`
+    decisionCom.appendChild(img);
     return option[choice];
 }
 
 // play Rock Paper Scissors
 function playRound(playerSelection, computerSelection){
     // compare the user's choice with computer choice
-    if (playerSelection === computerSelection) {
-        message = "It's a tie!";
-    }
-    else if (
+    if (
         (playerSelection === "rock" && computerSelection === "scissors" ) ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper")) {
-            message = "You Win!"
+            message = "Win"
         }
     else {
-        message = "You Lose!"
+        message = "Lose"
     }
     
     return message;
@@ -79,7 +83,21 @@ function playRound(playerSelection, computerSelection){
 // initial the game and record the score
 function game(e) {
     // record the score
+
+    // clear the space for image if there are one
+    while (decisionPlayer.firstChild) {
+        decisionPlayer.removeChild(decisionPlayer.firstChild);
+    }
+    
     let playerSelection = this.value;
+
+    // update the image
+    let img = document.createElement('img');
+    img.src = `images/${playerSelection}.png`;
+    img.alt = `${playerSelection}`
+    decisionPlayer.appendChild(img);
+
+    // play game
     let message = playRound(playerSelection, getComputerChoice());
 
     if (message.includes("Win")){
@@ -89,25 +107,20 @@ function game(e) {
         computerScore++;
     }
 
+    // update the score
     scoreTracker(playerScore, computerScore);
 
     if (isWinner(playerScore)){
-        message = "You are the Winner!";
+        resetBtn.style.visibility = "visible";
     }
     else if (isWinner(computerScore)){
-        message = "Game Over! You Lose!";
+        resetBtn.style.visibility = "visible";
     }
-
-    // show the message in container div
-    let messages = document.createElement('p');
-    messages.textContent = message;
-    result.appendChild(messages);
 }
 
 buttons.forEach(button => button.addEventListener('click', game));
 
 function isWinner(score) {
-    resetBtn.style.visibility = "visible";
     return score >= 5 ? true : false;
 }
 
@@ -115,10 +128,17 @@ resetBtn.addEventListener('click', function() {
     // reset the score
     playerScore = 0;
     computerScore = 0;
-    while (result.firstChild) {
-        result.removeChild(result.firstChild);
-    }
+
     scoreTracker(playerScore, computerScore);
+
+    while (decisionPlayer.firstChild) {
+        decisionPlayer.removeChild(decisionPlayer.firstChild);
+    }
+    while (decisionCom.firstChild) {
+        decisionCom.removeChild(decisionCom.firstChild);
+    }
+
+    resetBtn.style.visibility = "hidden";
 
     // reset to the first screen
     content.classList.remove("show");
