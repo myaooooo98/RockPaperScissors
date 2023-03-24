@@ -10,16 +10,16 @@ start.addEventListener("click", function(e){
 
 
 // for resources modal
-const modal = document.querySelector(".modal");
+const resourcesModal = document.querySelector("#resourcesModal");
 const triggerBtn = document.querySelector(".trigger");
 const closeBtn = document.querySelector("#close");
 
 function toggleModal() {
-    modal.classList.toggle("showModal");
+    resourcesModal.classList.toggle("showModal");
 }
 
 function windowOnClick(event) {
-    if (event.target === modal) {
+    if (event.target === resourcesModal) {
         toggleModal();
     }
 }
@@ -73,7 +73,9 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === "scissors" && computerSelection === "paper")) {
             message = "Win"
         }
-    else {
+    else if (playerSelection === computerSelection) {
+        message = '';
+    } else {
         message = "Lose"
     }
     
@@ -124,7 +126,9 @@ function isWinner(score) {
     return score >= 5 ? true : false;
 }
 
-resetBtn.addEventListener('click', function() {
+resetBtn.addEventListener('click', reset);
+
+function reset(e) {
     // reset the score
     playerScore = 0;
     computerScore = 0;
@@ -143,4 +147,4 @@ resetBtn.addEventListener('click', function() {
     // reset to the first screen
     content.classList.remove("show");
     divPlay.style.display = "flex";
-})
+}
