@@ -28,6 +28,7 @@ triggerBtn.addEventListener("click", toggleModal);
 closeBtn.addEventListener("click", toggleModal);
 window.addEventListener("click", windowOnClick);
 
+
 // div that record the scores of the game
 let playerScore = 0;
 let computerScore = 0;
@@ -39,33 +40,38 @@ function scoreTracker(playerScore, computerScore) {
     computerScores.textContent = computerScore;
 }
 
+// initial the score with 0 vs 0
 scoreTracker(playerScore, computerScore);
 
+
 // for playing games
-let option = ['rock', 'paper', 'scissors'];
 const buttons = document.querySelectorAll('.option');
 const resetBtn = document.querySelector('button.reset');
 const decisionPlayer = document.querySelector('.player > .decision');
 const decisionCom = document.querySelector('.computer > .decision');
+const message = document.querySelector('div.message');
+const resultModal = document.querySelector('#resultModal');
 
-// div that display the result of each game
-let message = "";
 
 // get computer choice
 function getComputerChoice(){
-    while (decisionCom.firstChild) {
-        decisionCom.removeChild(decisionCom.firstChild);
-    }
+    let option = ['rock', 'paper', 'scissors'];
+
+    // clear the img before to insert the new img
+    clearDecisionBlock(decisionCom);
+
     let choice = Math.floor(Math.random() * 3);
-    let img = document.createElement('img');
-    img.src = `images/${option[choice]}.png`;
-    img.alt = `${option[choice]}`
-    decisionCom.appendChild(img);
+    
+    // insert the img
+    insertImg(option[choice], decisionCom);
+
     return option[choice];
 }
 
+
 // play Rock Paper Scissors
 function playRound(playerSelection, computerSelection){
+    let message = "";
     // compare the user's choice with computer choice
     if (
         (playerSelection === "rock" && computerSelection === "scissors" ) ||
@@ -82,22 +88,18 @@ function playRound(playerSelection, computerSelection){
     return message;
 }
 
+
 // initial the game and record the score
 function game(e) {
     // record the score
 
     // clear the space for image if there are one
-    while (decisionPlayer.firstChild) {
-        decisionPlayer.removeChild(decisionPlayer.firstChild);
-    }
+    clearDecisionBlock(decisionPlayer);
     
     let playerSelection = this.value;
 
     // update the image
-    let img = document.createElement('img');
-    img.src = `images/${playerSelection}.png`;
-    img.alt = `${playerSelection}`
-    decisionPlayer.appendChild(img);
+    insertImg(playerSelection, decisionPlayer);
 
     // play game
     let message = playRound(playerSelection, getComputerChoice());
@@ -112,21 +114,21 @@ function game(e) {
     // update the score
     scoreTracker(playerScore, computerScore);
 
+    // either one reach score of 5, display winner
     if (isWinner(playerScore)){
-        resetBtn.style.visibility = "visible";
+        displayResult("You are the WINNER!!! 😹")
     }
     else if (isWinner(computerScore)){
-        resetBtn.style.visibility = "visible";
+        displayResult("Game Over 😿")
     }
+    return;
 }
 
-buttons.forEach(button => button.addEventListener('click', game));
 
 function isWinner(score) {
     return score >= 5 ? true : false;
 }
 
-resetBtn.addEventListener('click', reset);
 
 function reset(e) {
     // reset the score
@@ -135,16 +137,45 @@ function reset(e) {
 
     scoreTracker(playerScore, computerScore);
 
-    while (decisionPlayer.firstChild) {
-        decisionPlayer.removeChild(decisionPlayer.firstChild);
-    }
-    while (decisionCom.firstChild) {
-        decisionCom.removeChild(decisionCom.firstChild);
-    }
+    clearDecisionBlock(decisionPlayer);
+    clearDecisionBlock(decisionCom);
 
+    resultModal.classList.toggle("showModal");
+    clearDecisionBlock(message);
     resetBtn.style.visibility = "hidden";
 
     // reset to the first screen
     content.classList.remove("show");
     divPlay.style.display = "flex";
 }
+
+
+function displayResult(string) {
+    resultModal.classList.toggle("showModal");
+    let p = document.createElement('h1');
+    p.textContent = `${string}`;
+    message.appendChild(p);
+    resetBtn.style.visibility = "visible";
+}
+
+// clear the img in decision block before insert a new img
+function clearDecisionBlock(block) {
+    while (block.firstChild) {
+        block.removeChild(block.firstChild);
+    }
+    return;
+}
+
+
+// show the img of the chosen option
+function insertImg(opt, block) {
+    let img = document.createElement('img');
+    img.src = `images/${opt}.png`;
+    img.alt = `${opt}`;
+    block.appendChild(img);
+    return;
+}
+
+buttons.forEach(button => button.addEventListener('click', game));
+resetBtn.addEventListener('click', reset);
+

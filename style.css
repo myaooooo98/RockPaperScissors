@@ -114,8 +114,9 @@ div.play {
     padding: 20px;
 }
 
-.container .playing {
+div.container.playing {
     flex-grow: 2;
+    gap: 25vw;
 }
 
 div.players {
@@ -146,7 +147,7 @@ div.decision {
 }
 
 .decision img {
-    width: 200px;
+    width: 250px;
 }
 
 .player > .decision img {
@@ -162,6 +163,10 @@ div.decision {
     height: 250px;
     margin: 5px;
     object-fit: scale-down;
+}
+
+div.options {
+    width: 100%;
 }
 
 button.option {
@@ -217,12 +222,19 @@ div.modal {
     font-family: 'Poppins', sans-serif;
 }
 
-div.resources {
+div.resources, div.result {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.resources {
     width: 50rem;
     height: 10rem;
     border-radius: 20px;
@@ -230,10 +242,6 @@ div.resources {
     font-size: 1.4em;
     background-color: rgb(163, 145, 140);
     color: rgb(31, 30, 29);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 #close {
@@ -297,5 +305,17 @@ div.resources {
         font-size: 4em;
         width: 250px;
         height: 250px;
+    }
+    
+    div.players {
+        height: 55vh;
+    }
+
+    .decision img {
+        width: 200px;
+    }
+
+    div.container.playing {
+        gap: 10vw;
     }
 }
