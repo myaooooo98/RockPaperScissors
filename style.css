@@ -181,16 +181,31 @@ button.option:hover {
     filter: opacity(50%);
 }
 
-div.reset {
+div.result {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
+    width: 70%;
+    height: 70%;
+    border-radius: 40px;
+    background-color: rgba(163, 145, 140, 0.9);
+    color: rgb(31, 30, 29);
+}
+
+div.message {
+    font-family: 'good_pawoodisplay';
+    font-size: 2em;
+    text-align: center;
 }
 
 button.reset {
     visibility: hidden;
-    font-size: 1.3em;
+    font-size: 2em;
+    margin: 30px;
+    width: 300px !important;
+    padding: 20px !important;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
 }
 
 /* -------------footer------------- */

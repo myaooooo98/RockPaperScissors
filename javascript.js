@@ -116,10 +116,10 @@ function game(e) {
 
     // either one reach score of 5, display winner
     if (isWinner(playerScore)){
-        displayResult("You are the WINNER!!! 😹")
+        displayResult("You are the WINNER!!!")
     }
     else if (isWinner(computerScore)){
-        displayResult("Game Over 😿")
+        displayResult("Game Over...")
     }
     return;
 }
